@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <meta
+        name="theme-color"
+        content="#1F53DD"
+    >
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <title>Control de Glucosa</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- =========================
+             ENCABEZADO
+        ========================== -->
+        <header class="header">
+
+            <div class="logo">
+                🩸
+            </div>
+
+            <h1>Control de Glucosa</h1>
+
+            <p>Registro Personal</p>
+
+        </header>
+
+
+        <!-- =========================
+             CONTENIDO PRINCIPAL
+        ========================== -->
+        <section class="content">
+            <!-- =========================
+     VISTA INICIO
+========================== -->
+
+            <section class="content view active" id="vistaInicio">
+
+                <h2>Nueva medición</h2>
+
+                <!-- FECHA -->
+                <div class="form-group">
+
+                    <label for="fecha">
+                        <span class="icon">📅</span>
+                        Fecha
+                    </label>
+
+                    <div class="input-box">
+
+                        <input type="date" id="fecha">
+
+                        <span class="input-icon">📅</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HORA -->
+                <div class="form-group">
+
+                    <label for="hora">
+                        <span class="icon">🕐</span>
+                        Hora
+                    </label>
+
+                    <div class="input-box">
+
+                        <input type="time" id="hora">
+
+                        <span class="input-icon">🕐</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GLUCOSA -->
+                <div class="form-group">
+
+                    <label for="glucosa">
+                        <span class="icon blood">🩸</span>
+                        Glucosa (mg/dL)
+                    </label>
+
+                    <div class="input-box glucose-input">
+
+                        <input type="number" id="glucosa" placeholder="98" min="0" max="1000">
+
+                        <span class="unit">mg/dL</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MOMENTO -->
+                <div class="form-group">
+
+                    <label for="momento">
+                        <span class="icon">🍴</span>
+                        Momento de la medición
+                    </label>
+
+                    <div class="input-box">
+
+                        <select id="momento">
+
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="Ayunas">
+                                Ayunas
+                            </option>
+
+                            <option value="Antes de comer">
+                                Antes de comer
+                            </option>
+
+                            <option value="Después de comer">
+                                Después de comer
+                            </option>
+
+                            <option value="Antes de dormir">
+                                Antes de dormir
+                            </option>
+
+                            <option value="Otro">
+                                Otro
+                            </option>
+
+                        </select>
+
+                        <span class="input-icon">⌄</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OBSERVACIÓN -->
+                <div class="form-group">
+
+                    <label for="observacion">
+                        <span class="icon">📝</span>
+                        Observación
+                        <small>(opcional)</small>
+                    </label>
+
+                    <textarea id="observacion" placeholder="Agregar nota..." rows="3"></textarea>
+
+                </div>
+
+
+                <!-- BOTÓN -->
+                <button class="btn-save" type="button">
+
+                    <span>💾</span>
+
+                    Guardar medición
+
+                </button>
+
+            </section>
+
+
+            <!-- =========================
+     VISTA HISTORIAL
+========================== -->
+
+            <section class="content view" id="vistaHistorial">
+
+                <div class="history-header">
+
+                    <div>
+
+                        <h2>Historial</h2>
+
+                        <p>
+                            Tus mediciones registradas
+                        </p>
+
+                    </div>
+
+                    <div class="history-icon">
+                        📊
+                    </div>
+
+                </div>
+
+
+                <!-- CONTENEDOR DE REGISTROS -->
+
+                <div id="listaRegistros" class="lista-registros">
+
+                    <div class="loading">
+
+                        <div class="spinner"></div>
+
+                        <p>
+                            Cargando registros...
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- =========================
+     GRÁFICA
+========================== -->
+
+                <div class="grafica-container" id="contenedorGrafica">
+
+                    <div class="grafica-header">
+
+                        <div>
+
+                            <h3>
+                                Evolución de glucosa
+                            </h3>
+
+                            <p>
+                                Mediciones registradas
+                            </p>
+
+                        </div>
+
+                        <span class="grafica-icon">
+                            📈
+                        </span>
+
+                    </div>
+
+
+                    <div class="grafica-wrapper">
+
+                        <canvas id="graficaGlucosa"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTONES FUTUROS -->
+
+                <div class="history-actions">
+
+                    <button class="btn-secondary" id="btnGrafica" type="button">
+
+                        📈 Ver gráfica
+
+                    </button>
+
+
+                    <button class="btn-secondary" id="btnPDF" type="button">
+
+                        📄 Descargar PDF
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </section>
+
+
+        <!-- =========================
+             NAVEGACIÓN
+        ========================== -->
+        <nav class="bottom-nav">
+
+            <a href="#" class="nav-item active">
+
+                <span class="nav-icon">⌂</span>
+
+                <span>Inicio</span>
+
+            </a>
+
+
+            <a href="#" class="nav-item">
+
+                <span class="nav-icon">▥</span>
+
+                <span>Historial</span>
+
+            </a>
+
+        </nav>
+
+    </main>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- AutoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- Aplicación -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>

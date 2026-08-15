@@ -1,0 +1,25 @@
+{
+  "name": "Control de Glucosa",
+  "short_name": "Glucosa",
+  "description": "Registro personal de mediciones de glucosa.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F5F7FA",
+  "theme_color": "#1F53DD",
+  "orientation": "portrait",
+  "lang": "es-CO",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
