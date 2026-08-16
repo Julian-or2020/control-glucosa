@@ -250,10 +250,10 @@ async function guardarMedicion() {
         if (resultado.success) {
 
 
-            mostrarNotificacion(
-                "Medición guardada",
-                `${glucosa} mg/dL · ${momento}`
-            );
+           mostrarNotificacion(
+    "Medición guardada",
+    "Tu registro se guardó correctamente."
+);
 
 
             // Limpiar formulario
