@@ -250,8 +250,9 @@ async function guardarMedicion() {
         if (resultado.success) {
 
 
-            alert(
-                "✅ Medición guardada correctamente."
+            mostrarNotificacion(
+                "Medición guardada",
+                `${glucosa} mg/dL · ${momento}`
             );
 
 
@@ -2008,13 +2009,13 @@ if ("serviceWorker" in navigator) {
 
     window.addEventListener(
         "load",
-        function() {
+        function () {
 
             navigator.serviceWorker
                 .register(
                     "./service-worker.js"
                 )
-                .then(function(registro) {
+                .then(function (registro) {
 
                     console.log(
                         "PWA: Service Worker registrado",
@@ -2022,7 +2023,7 @@ if ("serviceWorker" in navigator) {
                     );
 
                 })
-                .catch(function(error) {
+                .catch(function (error) {
 
                     console.error(
                         "PWA: Error registrando Service Worker:",
@@ -2033,5 +2034,76 @@ if ("serviceWorker" in navigator) {
 
         }
     );
+
+}
+
+// ==========================================
+// MOSTRAR NOTIFICACIÓN
+// ==========================================
+
+let temporizadorNotificacion = null;
+
+
+function mostrarNotificacion(
+    titulo,
+    mensaje
+) {
+
+    const notificacion =
+        document.getElementById(
+            "notificacion"
+        );
+
+    const tituloElemento =
+        document.getElementById(
+            "notificacionTitulo"
+        );
+
+    const mensajeElemento =
+        document.getElementById(
+            "notificacionMensaje"
+        );
+
+
+    // Actualizar contenido
+
+    tituloElemento.textContent =
+        titulo;
+
+    mensajeElemento.textContent =
+        mensaje;
+
+
+    // Mostrar
+
+    notificacion.classList.add(
+        "mostrar"
+    );
+
+
+    // Cancelar temporizador anterior
+
+    if (temporizadorNotificacion) {
+
+        clearTimeout(
+            temporizadorNotificacion
+        );
+
+    }
+
+
+    // Ocultar después de 3 segundos
+
+    temporizadorNotificacion =
+        setTimeout(
+            function () {
+
+                notificacion.classList.remove(
+                    "mostrar"
+                );
+
+            },
+            3000
+        );
 
 }
