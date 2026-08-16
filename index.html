@@ -5,15 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     <meta
-        name="theme-color"
-        content="#1F53DD"
-    >
+    <meta name="theme-color" content="#1F53DD">
 
-    <link
-        rel="manifest"
-        href="manifest.json"
-    >
+    <link rel="manifest" href="manifest.json">
 
     <title>Control de Glucosa</title>
 
@@ -313,6 +307,30 @@
         </nav>
 
     </main>
+
+    <!-- =================================
+     NOTIFICACIÓN
+================================== -->
+
+    <div id="notificacion" class="notificacion" role="status" aria-live="polite">
+
+        <div class="notificacion-icono">
+            ✓
+        </div>
+
+        <div class="notificacion-contenido">
+
+            <strong id="notificacionTitulo">
+                Medición guardada
+            </strong>
+
+            <span id="notificacionMensaje">
+                Tu registro se guardó correctamente.
+            </span>
+
+        </div>
+
+    </div>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
